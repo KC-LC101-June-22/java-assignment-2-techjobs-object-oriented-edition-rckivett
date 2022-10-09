@@ -30,8 +30,8 @@ public class JobTest {
         jobC = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         jobD = new Job("Junior Developer", new Employer("TruckMovers.com, Inc."), new Location("Kansas City"), new PositionType("Web - Full Stack"), new CoreCompetency("Python"));
         jobE = new Job("Junior Developer", new Employer("TruckMovers.com, Inc."), new Location("Kansas City"), new PositionType("Web - Full Stack"), new CoreCompetency("Python"));
-        jobF = new Job("Technical Help Desk", new Employer("DataServ"), new Location(), new PositionType("Technical Assistant / User Support"), new CoreCompetency("Non-coding"));
-        jobG = new Job("", new Employer(), new Location("South Florida"), new PositionType(), new CoreCompetency());
+        jobF = new Job("Technical Help Desk", new Employer("DataServ"), new Location(""), new PositionType("Technical Assistant / User Support"), new CoreCompetency("Non-coding"));
+        jobG = new Job("", new Employer(""), new Location("South Florida"), new PositionType(""), new CoreCompetency(""));
     }
     @Test
     public void testSettingJobId(){
