@@ -3,10 +3,8 @@ package org.launchcode.techjobs.oo;
 import java.util.Objects;
 
 public class Job {
-
     private int id;
     private static int nextId = 1;
-
     private String name;
     private Employer employer;
     private Location location;
@@ -45,6 +43,12 @@ public class Job {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, employer, location, positionType, coreCompetency);
+    }
+
+
+    @Override
+    public String toString(){
+        return "\nID: "+id+"\nName: "+name+"\nEmployer: "+employer.getValue()+"\nLocation: "+location.getValue()+"\nPosition Type: "+positionType.getValue()+"\nCore Competency: "+coreCompetency.getValue()+"\n";
     }
 
 

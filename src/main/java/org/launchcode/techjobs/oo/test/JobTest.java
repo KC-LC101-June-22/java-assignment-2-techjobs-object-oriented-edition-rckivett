@@ -47,7 +47,16 @@ public class JobTest {
     public void testJobsForEquality(){
         jobD = new Job("Junior Developer", new Employer("TruckMovers.com, Inc."), new Location("Kansas City"), new PositionType("Web - Full Stack"), new CoreCompetency("Python"));
         jobE = new Job("Junior Developer", new Employer("TruckMovers.com, Inc."), new Location("Kansas City"), new PositionType("Web - Full Stack"), new CoreCompetency("Python"));
-
         assertFalse(jobD.equals(jobE));
+    }
+
+    @Test
+    public void testToStringStartsAndEndsWithNewLine(){
+        assertEquals(jobC.toString().charAt(0), '\n');
+        assertEquals(jobC.toString().charAt(jobC.toString().length()-1), '\n');
+    }
+    @Test
+    public void testToStringContainsCorrectLabelsAndData(){
+        assertTrue(jobC.toString().contains("ID: 1\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n"));
     }
 }
