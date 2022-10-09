@@ -19,15 +19,22 @@ public class JobTest {
     public Job jobC;
     public Job jobD;
     public Job jobE;
+    public Job jobF;
+    public Job jobG;
 
     @Before
     public void init(){
+        Job.resetJobId();
+        jobA = new Job();
+        jobB = new Job();
         jobC = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        jobD = new Job("Junior Developer", new Employer("TruckMovers.com, Inc."), new Location("Kansas City"), new PositionType("Web - Full Stack"), new CoreCompetency("Python"));
+        jobE = new Job("Junior Developer", new Employer("TruckMovers.com, Inc."), new Location("Kansas City"), new PositionType("Web - Full Stack"), new CoreCompetency("Python"));
+        jobF = new Job("Technical Help Desk", new Employer("DataServ"), new Location(), new PositionType("Technical Assistant / User Support"), new CoreCompetency("Non-coding"));
+        jobG = new Job("", new Employer(), new Location("South Florida"), new PositionType(), new CoreCompetency());
     }
     @Test
     public void testSettingJobId(){
-        jobA = new Job();
-        jobB = new Job();
         assertNotEquals(jobA.getId(), jobB.getId());
     }
     @Test
@@ -45,8 +52,6 @@ public class JobTest {
     }
     @Test
     public void testJobsForEquality(){
-        jobD = new Job("Junior Developer", new Employer("TruckMovers.com, Inc."), new Location("Kansas City"), new PositionType("Web - Full Stack"), new CoreCompetency("Python"));
-        jobE = new Job("Junior Developer", new Employer("TruckMovers.com, Inc."), new Location("Kansas City"), new PositionType("Web - Full Stack"), new CoreCompetency("Python"));
         assertFalse(jobD.equals(jobE));
     }
 
@@ -57,6 +62,12 @@ public class JobTest {
     }
     @Test
     public void testToStringContainsCorrectLabelsAndData(){
-        assertTrue(jobC.toString().contains("ID: 1\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n"));
+        assertTrue(jobC.toString().contains("ID: 3\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n"));
+    }
+
+    @Test
+    public void testTestToStringHandlesEmptyFieldCallsToString(){
+        assertTrue(jobF.toString().contains("ID: 6\nName: Technical Help Desk\nEmployer: DataServ\nLocation: Data not available\nPosition Type: Technical Assistant / User Support\nCore Competency: Non-coding\n"));
+        assertTrue(jobG.toString().contains("ID: 7\nName: Data not available\nEmployer: Data not available\nLocation: South Florida\nPosition Type: Data not available\nCore Competency: Data not available"));
     }
 }

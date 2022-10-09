@@ -29,6 +29,17 @@ public class Job {
         this.coreCompetency=coreCompetency;
     }
 
+    public static void resetJobId(){
+        nextId = 1;
+    }
+
+    private boolean jobFieldIsNotEmpty(String inputString) {
+        return inputString != null && !inputString.isEmpty();
+    }
+    private String defaultString(String inputString, String defaultString) {
+        return jobFieldIsNotEmpty(inputString) ? inputString : defaultString;
+    }
+
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
     //  match.
 
@@ -48,7 +59,18 @@ public class Job {
 
     @Override
     public String toString(){
-        return "\nID: "+id+"\nName: "+name+"\nEmployer: "+employer.getValue()+"\nLocation: "+location.getValue()+"\nPosition Type: "+positionType.getValue()+"\nCore Competency: "+coreCompetency.getValue()+"\n";
+        String dataNotAvailable = "Data not available";
+        return String.format("\nID: %d\nName: %s\nEmployer: %s\nLocation: %s\nPosition Type: %s\nCore Competency: %s\n",
+            id,
+            defaultString(name, dataNotAvailable),
+            employer==null ? dataNotAvailable : defaultString(employer.getValue(), dataNotAvailable),
+            location==null ? dataNotAvailable : defaultString(location.getValue(), dataNotAvailable),
+            positionType==null ? dataNotAvailable : defaultString(positionType.getValue(), dataNotAvailable),
+            coreCompetency==null ? dataNotAvailable : defaultString(coreCompetency.getValue(), dataNotAvailable)
+            );
+
+
+       // return "\nID: "+id+"\nName: "+name+"\nEmployer: "+employer.getValue()+"\nLocation: "+location.getValue()+"\nPosition Type: "+positionType.getValue()+"\nCore Competency: "+coreCompetency.getValue()+"\n";
     }
 
 
